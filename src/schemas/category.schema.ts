@@ -6,7 +6,3 @@ export const categotySchema = z.object({
 });
 
 export const categoryCreateSchema = categotySchema.omit({ id: true });
-
-export type TCategory = z.infer<typeof categotySchema>
-
-export type TCategoryCreate = z.infer<typeof categoryCreateSchema>;

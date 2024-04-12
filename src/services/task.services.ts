@@ -1,32 +1,32 @@
 import { prisma } from "../database/prisma";
-import { TTask, TTaskCreate, TTaskUpdate } from "../schemas/task.schemas";
+import { TTask, TTaskCreate, TTaskUpdate } from "../interfaces/task.interfaces";
 
 export class TaskServices {
-    async create(body: TTaskCreate) {
-        const data = await prisma.task.create({ data: body });
+    async create(categoryId: number, body: TTaskCreate): Promise<TTask> {
+        const data = await prisma.task.create({ data: { categoryId, ...body } });
 
         return data;
     }
 
     async findMany() {
-        const data = await prisma.task.findMany();
+        const data = await prisma.task.findMany({ include: { category: true } });
 
         return data;
     }
 
     async findOne(id: number) {
-        const data = await prisma.task.findFirst({ where: { id } });
+        const data = await prisma.task.findFirst({ where: { id }, include: { category: true } });
 
         return data;
     }
 
-    async update(id: number, body: TTaskUpdate): Promise<TTask> {
+    async update(id: number, body: TTaskUpdate) {
         const data = await prisma.task.update({ where: { id }, data: body });
 
         return data;
     }
 
-    async delete(id: number): Promise<void> {
+    async delete(id: number) {
         await prisma.task.delete({ where: { id } })
     }
 }

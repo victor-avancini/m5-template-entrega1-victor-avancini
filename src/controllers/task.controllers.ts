@@ -5,7 +5,7 @@ export class TaskControllers {
     async create(req: Request, res: Response) {
         const taskServices = new TaskServices();
 
-        const response = await taskServices.create(req.body);
+        const response = await taskServices.create(Number(req.params.id), req.body);
 
         return res.status(201).json(response);
     }

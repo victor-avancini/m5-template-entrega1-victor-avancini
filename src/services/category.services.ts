@@ -1,5 +1,5 @@
 import { prisma } from "../database/prisma";
-import { TCategoryCreate } from "../schemas/category.schema";
+import { TCategoryCreate } from "../interfaces/category.interfaces";
 
 export class CategoryServices {
     async create(body: TCategoryCreate) {
@@ -8,7 +8,7 @@ export class CategoryServices {
         return data
     }
 
-    delete() {
-
+    async delete(id: number) {
+        await prisma.category.delete({ where: { id } })
     }
 }

@@ -8,12 +8,6 @@ export const taskSchema = z.object({
     categoryId: z.number().positive().nullish()
 });
 
-export const taskCreateSchema = taskSchema.omit({ id: true });
+export const taskCreateSchema = taskSchema.omit({ id: true, finished: true });
 
 export const taskUpdateSchema = taskCreateSchema.partial();
-
-export type TTask = z.infer<typeof taskCreateSchema>
-
-export type TTaskCreate = z.infer<typeof taskCreateSchema>;
-
-export type TTaskUpdate = z.infer<typeof taskUpdateSchema>;
