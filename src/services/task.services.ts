@@ -8,8 +8,8 @@ export class TaskServices {
         return data;
     }
 
-    async findMany() {
-        const data = await prisma.task.findMany({ include: { category: true } });
+    async findMany(search?: string) {
+        const data = await prisma.task.findMany({ where: { category: { name: search } }, include: { category: true } });
 
         return data;
     }

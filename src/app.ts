@@ -5,7 +5,7 @@ import "dotenv/config";
 import helmet from "helmet";
 import { taskRouter } from "./routes/task.routes";
 import { categoryRouter } from "./routes/category.routes";
-import { HandleErrors } from "./middlewares/HandleErrors.Middleware";
+import { HandleErrors } from "./middlewares/HandleErrors.middleware";
 
 export const app = express();
 

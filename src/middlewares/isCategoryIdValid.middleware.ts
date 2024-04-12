@@ -4,11 +4,11 @@ import { AppError } from "../errors/appError";
 
 export class IsCategoryIdValid {
     static async execute(req: Request, res: Response, next: NextFunction) {
-        const categoryId = req.body.categoryId;
+        const categoryId: number = req.body.categoryId;
 
         const category = await prisma.category.findUnique({ where: { id: Number(categoryId) } });
 
-        if(!category){
+        if (!category) {
             throw new AppError(404, "Category not found");
         }
 
