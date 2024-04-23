@@ -3,42 +3,36 @@ import { TaskServices } from "../services/task.services";
 import { category } from "../tests/mocks/category.mocks";
 
 export class TaskControllers {
-    async create(req: Request, res: Response) {
-        const taskServices = new TaskServices();
+    private service = new TaskServices();
 
-        const response = await taskServices.create(Number(req.params.id), req.body);
+    public create = async (req: Request, res: Response): Promise<Response> => {
+        const response = await this.service.create(req.body);
 
         return res.status(201).json(response);
     }
 
-    async findMany(req: Request, res: Response) {
-        const taskServices = new TaskServices();
+    public readMany = async ({query}: Request, res: Response): Promise<Response> => {
+        const queryParams = query.category ? String(query.category) : undefined;
 
-        const response = await taskServices.findMany();
-
-        return res.status(200).json(response);
-    }
-
-    async findOne(req: Request, res: Response) {
-        const taskServices = new TaskServices();
-
-        const response = await taskServices.findOne(Number(req.params.id));
+        const response = await this.service.readMany(queryParams);
 
         return res.status(200).json(response);
     }
 
-    async update(req: Request, res: Response) {
-        const taskServices = new TaskServices();
-
-        const response = await taskServices.update(Number(req.params.id), req.body);
+    public readOne = async (req: Request, res: Response): Promise<Response> => {
+        const response = await this.service.readOne(Number(req.params.id));
 
         return res.status(200).json(response);
     }
 
-    async delete(req: Request, res: Response) {
-        const taskServices = new TaskServices();
+    public update = async (req: Request, res: Response): Promise<Response> => {
+        const response = await this.service.update(Number(req.params.id), req.body);
 
-        await taskServices.delete(Number(req.params.id));
+        return res.status(200).json(response);
+    }
+
+    public delete = async (req: Request, res: Response): Promise<Response> => {
+        await this.service.delete(Number(req.params.id));
 
         return res.status(204).json();
     }

@@ -2,18 +2,16 @@ import { Request, Response } from "express";
 import { CategoryServices } from "../services/category.services";
 
 export class CategoryControllers {
-    async create(req: Request, res: Response) {
-        const categoryServices = new CategoryServices();
+    private service = new CategoryServices();
 
-        const response = await categoryServices.create(req.body);
+    public create = async (req: Request, res: Response): Promise<Response> => {
+        const response = await this.service.create(req.body);
 
         return res.status(201).json(response);
     }
 
-    async delete(req: Request, res: Response) {
-        const categoryServices = new CategoryServices();
-
-        await categoryServices.delete(Number(req.params.id));
+    public delete = async (req: Request, res: Response): Promise<Response> => {
+        await this.service.delete(Number(req.params.id));
 
         return res.status(204).json();
     }
