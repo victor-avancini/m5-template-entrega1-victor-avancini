@@ -1,8 +1,10 @@
 import { z } from "zod";
-import { taskCreateSchema, taskSchema, taskUpdateSchema } from "../schemas/task.schemas";
+import { taskSchema, taskCreateSchema, taskUpdateSchema } from "../schemas";
 
-export type Task = z.infer<typeof taskSchema>
+type Task = z.infer<typeof taskSchema>
 
-export type TaskCreate = z.infer<typeof taskCreateSchema>;
+type TaskCreate = z.infer<typeof taskCreateSchema>;
 
-export type TaskUpdate = z.infer<typeof taskUpdateSchema>;
+type TaskUpdate = z.infer<typeof taskUpdateSchema>;
+
+export { Task, TaskCreate, TaskUpdate };

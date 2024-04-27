@@ -1,5 +1,5 @@
 import { prisma } from "../database/prisma";
-import { Task, TaskCreate, TaskUpdate } from "../interfaces/task.interfaces";
+import { Task, TaskCreate, TaskUpdate } from "../interfaces";
 
 export class TaskServices {
     public create = async (body: TaskCreate): Promise<Task> => {

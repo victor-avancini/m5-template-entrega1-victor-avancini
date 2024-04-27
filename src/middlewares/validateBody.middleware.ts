@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { ZodError, ZodSchema } from "zod";
 
-export class ValidateBody {
+export class validateBody {
     static execute(schema: ZodSchema) {
         return async (req: Request, res: Response, next: NextFunction) => {
 

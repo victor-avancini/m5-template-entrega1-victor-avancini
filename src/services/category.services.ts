@@ -1,5 +1,5 @@
 import { prisma } from "../database/prisma";
-import { CategoryCreate } from "../interfaces/category.interfaces";
+import { CategoryCreate } from "../interfaces";
 
 export class CategoryServices {
     public create = async (body: CategoryCreate) => {

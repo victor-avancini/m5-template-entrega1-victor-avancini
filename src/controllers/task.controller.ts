@@ -1,8 +1,7 @@
 import { Request, Response } from "express";
-import { TaskServices } from "../services/task.services";
-import { category } from "../tests/mocks/category.mocks";
+import { TaskServices } from "../services";
 
-export class TaskControllers {
+export class TaskController {
     private service = new TaskServices();
 
     public create = async (req: Request, res: Response): Promise<Response> => {

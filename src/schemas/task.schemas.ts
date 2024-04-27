@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const taskSchema = z.object({
+const taskSchema = z.object({
     id: z.number().positive(),
     title: z.string().min(1),
     content: z.string().min(1),
@@ -8,6 +8,8 @@ export const taskSchema = z.object({
     categoryId: z.number().positive().nullish()
 });
 
-export const taskCreateSchema = taskSchema.omit({ id: true });
+const taskCreateSchema = taskSchema.omit({ id: true });
 
-export const taskUpdateSchema = taskSchema.partial();
+const taskUpdateSchema = taskSchema.partial();
+
+export { taskSchema, taskCreateSchema, taskUpdateSchema };
