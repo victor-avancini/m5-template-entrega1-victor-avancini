@@ -5,7 +5,8 @@ const taskSchema = z.object({
     title: z.string().min(1),
     content: z.string().min(1),
     finished: z.boolean().default(false),
-    categoryId: z.number().positive().nullish()
+    categoryId: z.number().positive().nullish(),
+    userId: z.number().positive().nullish()
 });
 
 const taskCreateSchema = taskSchema.omit({ id: true });

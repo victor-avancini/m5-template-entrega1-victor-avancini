@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { AppError } from "../errors/appError";
 import { jwtConfig } from "../configs";
-import { JsonWebTokenError, verify } from "jsonwebtoken";
+import { verify } from "jsonwebtoken";
 
 export class verifyToken {
     static async execute(req: Request, res: Response, next: NextFunction) {
@@ -21,7 +21,6 @@ export class verifyToken {
             throw new AppError(401, "Invalid token");
         }
         
-
         res.locals = { ...res.locals, decoded: jwtPayload };
 
         return next();
