@@ -15,14 +15,12 @@ export class verifyToken {
 
         const { secret } = jwtConfig();
         const jwtPayload = verify(token, secret);
-        console.log(jwtPayload)
 
         if (!jwtPayload) {
             throw new AppError(401, "Invalid token");
         }
         
         res.locals = { ...res.locals, decoded: jwtPayload };
-        console.log(res.locals.decoded.sub)
 
         return next();
     }
