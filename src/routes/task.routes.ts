@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { TaskController } from "../controllers";
-import { validateBody, isTaskIdValid, categoryFound, verifyToken, isTaskOwner, isCategoryValid, isCategoryOwner } from "../middlewares";
+import { validateBody, isTaskIdValid, categoryFound, verifyToken, isTaskOwner, isCategoryValid } from "../middlewares";
 import { taskCreateSchema, taskUpdateSchema } from "../schemas";
 
 export const taskRouter = Router();

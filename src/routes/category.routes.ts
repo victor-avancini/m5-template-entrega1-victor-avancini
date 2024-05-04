@@ -1,8 +1,7 @@
 import { Router } from "express";
 import { CategoryController } from "../controllers";
 import { validateBody, isCategoryValid, verifyToken, isCategoryOwner } from "../middlewares";
-import { categoryCreateResponseSchema, categoryCreateSchema } from "../schemas";
-import { isTokenValid } from "../middlewares/isTokenValid.middleware";
+import { categoryCreateSchema } from "../schemas";
 
 export const categoryRouter = Router();
 
