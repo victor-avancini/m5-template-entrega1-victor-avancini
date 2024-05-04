@@ -5,6 +5,7 @@ import { AppError } from "../errors/appError";
 export class isTaskOwner {
     static async execute(req: Request, res: Response, next: NextFunction) {
         const userId = res.locals.decoded.id
+        
         const taskId = req.params.id
 
         const task = await prisma.task.findFirst({ where: { id: Number(taskId) } })

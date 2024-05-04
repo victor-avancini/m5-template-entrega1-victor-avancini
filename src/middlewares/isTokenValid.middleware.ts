@@ -9,12 +9,13 @@ export class isTokenValid {
         const token = authorization?.replace("Bearer ","");
 
         if (!token) {
-            throw new AppError(403, "Token is required");
+            throw new AppError(401, "Invalid token");
         };
 
         jwt.verify(token, process.env.JWT_SECRET as string);
 
         res.locals.decode = jwt.decode(token);
+        // console.log(res.locals.decode.iat)
 
         next();
     }

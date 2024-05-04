@@ -22,6 +22,7 @@ export class verifyToken {
         }
         
         res.locals = { ...res.locals, decoded: jwtPayload };
+        console.log(res.locals.decoded.sub)
 
         return next();
     }

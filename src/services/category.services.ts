@@ -1,12 +1,23 @@
 import { prisma } from "../database/prisma";
-import { CategoryCreate } from "../interfaces";
+import { CategoryCreate, CategoryCreateResponse } from "../interfaces";
 
 export class CategoryServices {
-    public create = async (body: CategoryCreate): Promise<CategoryCreate> => {
-        return await prisma.category.create({ data: body })
+    private category = prisma.category;
+    // public create = async (body: CategoryCreate): Promise<CategoryCreate> => {
+    //     return await this.category.create({ data: body })
+    // }
+
+    public create = async (body: CategoryCreate, userId: number): Promise<CategoryCreateResponse> => {
+        const newCategory = { ...body, userId };
+
+        return await this.category.create({ data: newCategory });
     }
 
+    // public delete = async (id: number): Promise<void> => {
+    //     await this.category.delete({ where: { id } })
+    // }
+
     public delete = async (id: number): Promise<void> => {
-        await prisma.category.delete({ where: { id } })
+        await this.category.delete({ where: { id } })
     }
 }
