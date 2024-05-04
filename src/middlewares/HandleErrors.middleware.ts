@@ -4,7 +4,7 @@ import { ZodError } from "zod";
 import { JsonWebTokenError } from "jsonwebtoken";
 
 export class handleErrors {
-    public static execute(error: Error, req: Request, res: Response, next: NextFunction) {
+    static async execute(error: Error, req: Request, res: Response, next: NextFunction) {
         if (error instanceof AppError) {
             return res.status(error.statusCode).json({ message: error.message })
         }
