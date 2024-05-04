@@ -6,9 +6,7 @@ export class categoryFound {
     const { categoryId } = req.body;
 
     if (categoryId) {
-      const found = await prisma.category.findUnique({
-        where: { id: categoryId }
-      });
+      const found = await prisma.category.findUnique({ where: { id: categoryId } });
 
       if (!found) {
         return res.status(404).json({ message: "Category not found" });
