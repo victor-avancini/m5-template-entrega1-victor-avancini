@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.taskRouter = void 0;
+const express_1 = require("express");
+const controllers_1 = require("../controllers");
+const middlewares_1 = require("../middlewares");
+const schemas_1 = require("../schemas");
+exports.taskRouter = (0, express_1.Router)();
+const taskControllers = new controllers_1.TaskController();
+exports.taskRouter.post("/", middlewares_1.verifyToken.execute, middlewares_1.categoryFound.execute, middlewares_1.validateBody.execute(schemas_1.taskCreateSchema), taskControllers.create);
+exports.taskRouter.get("/", middlewares_1.verifyToken.execute, taskControllers.readMany);
+exports.taskRouter.get("/:id", middlewares_1.verifyToken.execute, middlewares_1.isTaskIdValid.execute, middlewares_1.isCategoryValid.execute, middlewares_1.isTaskOwner.execute, taskControllers.readOne);
+exports.taskRouter.patch("/:id", middlewares_1.verifyToken.execute, middlewares_1.isTaskIdValid.execute, middlewares_1.validateBody.execute(schemas_1.taskUpdateSchema), middlewares_1.isTaskOwner.execute, taskControllers.update);
+exports.taskRouter.delete("/:id", middlewares_1.verifyToken.execute, middlewares_1.isTaskIdValid.execute, middlewares_1.isTaskOwner.execute, taskControllers.delete);
