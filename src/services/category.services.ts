@@ -6,7 +6,6 @@ export class CategoryServices {
 
     public create = async (body: CategoryCreate, userId: number): Promise<CategoryCreateResponse> => {
         const newCategory = { ...body, userId };
-        // console.log(newCategory)
 
         return await this.category.create({ data: newCategory });
     }

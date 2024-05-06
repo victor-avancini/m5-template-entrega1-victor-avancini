@@ -4,7 +4,7 @@ import { AppError } from "../errors/appError";
 
 export class isTaskIdValid {
     static async execute(req: Request, res: Response, next: NextFunction) {
-        const taskId = req.params.id;
+        const taskId = Number(req.params.id);
 
         const task = await prisma.task.findUnique({ where: { id: Number(taskId) } });
 

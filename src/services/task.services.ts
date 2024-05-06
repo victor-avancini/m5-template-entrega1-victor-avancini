@@ -4,9 +4,6 @@ import { taskSchemaRead } from "../schemas";
 
 export class TaskServices {
     private task = prisma.task;
-    // public create = async (body: TaskCreate): Promise<Task> => {
-    //     return await this.task.create({ data: body })
-    // }
 
     public create = async (body: TaskCreate, userId: number): Promise<Task> => {
         const newTask = { ...body, userId };
@@ -30,8 +27,11 @@ export class TaskServices {
         return await this.task.findFirst({ where: { id }, include: { category: true } })
     }
 
-    public update = async (id: number, body: TaskUpdate): Promise<Task> => {
-        return await this.task.update({ where: { id }, data: body })
+    public update = async (id: number, body: TaskUpdate, userId: number): Promise<Task> => {
+        const updatedTask = { ...body, userId };
+        console.log(updatedTask)
+
+        return await this.task.update({ where: { id }, data: updatedTask });
     }
 
     public delete = async (id: number): Promise<void> => {

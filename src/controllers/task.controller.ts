@@ -19,23 +19,25 @@ export class TaskController {
     }
 
     public readMany = async ({ query }: Request, res: Response): Promise<Response> => {
-        const userId = res.locals.decoded?.id;
+        const userId = res.locals.decoded?.sub;
 
         const queryParams = query.category ? String(query.category) : undefined;
 
-        const response = await this.service.readMany(queryParams, userId);
+        const response = await this.service.readMany(queryParams, Number(userId));
 
         return res.status(200).json(response);
     }
 
-    public readOne = async (req: Request, res: Response): Promise<Response> => {
+    public readOne = async (req: Request, res: Response): Promise<Response> => {       
         const response = await this.service.readOne(Number(req.params.id));
 
         return res.status(200).json(response);
     }
 
     public update = async (req: Request, res: Response): Promise<Response> => {
-        const response = await this.service.update(Number(req.params.id), req.body);
+        const userId = res.locals.decoded?.sub;
+
+        const response = await this.service.update(Number(req.params.id), req.body, Number(userId));
 
         return res.status(200).json(response);
     }
