@@ -17,8 +17,9 @@ export class UserController {
     }
 
     public getUser = async (req: Request, res: Response): Promise<Response> => {
-        const response = await this.service.getUser(req.body)
+        
+        const response = await this.service.getUser(req.body);
 
-        return res.status(200).json(response)
+        return res.status(200).json(response);
     }
 }

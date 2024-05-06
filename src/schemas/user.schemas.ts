@@ -10,5 +10,6 @@ const userSchema = z.object({
 const userBodyCreateSchema = userSchema.omit({ id: true });
 const userReturnSchema = userSchema.omit({ password: true });
 const userBodyLoginSchema = userSchema.omit({ id: true, name: true });
+const userBodyGetSchema = userSchema.omit({ id: true, password: true })
 
-export { userSchema, userBodyCreateSchema, userReturnSchema, userBodyLoginSchema };
+export { userSchema, userBodyCreateSchema, userReturnSchema, userBodyLoginSchema, userBodyGetSchema };

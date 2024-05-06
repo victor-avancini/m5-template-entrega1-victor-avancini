@@ -15,7 +15,6 @@ export class isTokenValid {
         jwt.verify(token, process.env.JWT_SECRET as string);
 
         res.locals.decode = jwt.decode(token);
-        // console.log(res.locals.decode.iat)
 
         next();
     }

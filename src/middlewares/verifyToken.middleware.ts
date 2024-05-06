@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from "express";
 import { AppError } from "../errors/appError";
-import { jwtConfig } from "../configs";
 import { verify } from "jsonwebtoken";
 
 export class verifyToken {
@@ -13,13 +12,14 @@ export class verifyToken {
 
         const [_, token] = authorization.split(" ");
 
-        const { secret } = jwtConfig();
-        const jwtPayload = verify(token, secret);
+        const secret = process.env.JWT_SECRET!;
 
-        if (!jwtPayload) {
-            throw new AppError(401, "Invalid token");
+        if (!token) {
+            throw new AppError(401, "Token is required");
         }
-        
+
+        const jwtPayload = verify(token, secret)
+
         res.locals = { ...res.locals, decoded: jwtPayload };
 
         return next();

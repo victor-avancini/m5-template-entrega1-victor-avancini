@@ -11,9 +11,9 @@ export class TaskController {
     // }
 
     public create = async (req: Request, res: Response): Promise<Response> => {
-        const userId = res.locals.decoded.id;
+        const userId = res.locals.decoded.sub;
 
-        const response = await this.service.create(req.body, userId);
+        const response = await this.service.create(req.body, Number(userId));
 
         return res.status(201).json(response);
     }
