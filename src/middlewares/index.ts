@@ -5,5 +5,4 @@ export { emailExists } from "./emailExists.middleware";
 export { verifyToken } from "./verifyToken.middleware";
 export { isCategoryOwner } from "./isCategoryOwner.middleware";
 export { isTaskOwner } from "./isTaskOwner.middleware";
-export { categoryFound } from "./categoryFound.middleware";
 export { handleErrors } from "./handleErrors.middleware";
