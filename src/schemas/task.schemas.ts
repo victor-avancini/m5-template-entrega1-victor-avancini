@@ -10,7 +10,7 @@ const taskSchema = z.object({
     userId: z.number().positive().nullish()
 });
 
-const taskSchemaRead = taskSchema.omit({ categoryId: true, userId: true }).extend({ category: categorySchema })
+const taskSchemaRead = taskSchema.omit({ categoryId: true, userId: true }).extend({ category: categorySchema.nullish() })
 
 const taskCreateSchema = taskSchema.omit({ id: true });
 

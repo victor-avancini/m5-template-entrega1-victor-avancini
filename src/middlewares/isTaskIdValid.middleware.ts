@@ -6,7 +6,7 @@ export class isTaskIdValid {
     static async execute(req: Request, res: Response, next: NextFunction) {
         const taskId = Number(req.params.id);
 
-        const task = await prisma.task.findUnique({ where: { id: Number(taskId) } });
+        const task = await prisma.task.findFirst({ where: { id: Number(taskId) } });
 
         if(!task){
             throw new AppError(404, "Task not found");

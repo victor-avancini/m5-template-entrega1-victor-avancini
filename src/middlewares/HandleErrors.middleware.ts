@@ -6,6 +6,7 @@ import { JsonWebTokenError } from "jsonwebtoken";
 export class handleErrors {
     static async execute(error: Error, req: Request, res: Response, next: NextFunction) {
         if (error instanceof AppError) {
+            console.log(error)
             return res.status(error.statusCode).json({ message: error.message })
         }
 

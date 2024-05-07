@@ -11,7 +11,7 @@ taskRouter.post("/", verifyToken.execute, categoryFound.execute, validateBody.ex
 
 taskRouter.get("/", verifyToken.execute, taskControllers.readMany);
 
-taskRouter.get("/:id", verifyToken.execute, isTaskIdValid.execute, isCategoryValid.execute, isTaskOwner.execute, taskControllers.readOne);
+taskRouter.get("/:id", verifyToken.execute, isTaskIdValid.execute, isTaskOwner.execute, taskControllers.readOne);
 
 taskRouter.patch("/:id", verifyToken.execute, isTaskIdValid.execute, validateBody.execute(taskUpdateSchema), isTaskOwner.execute, taskControllers.update);
 
