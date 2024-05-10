@@ -4,12 +4,6 @@ import { TaskServices } from "../services";
 export class TaskController {
     private service = new TaskServices();
 
-    // public create = async (req: Request, res: Response): Promise<Response> => {
-    //     const response = await this.service.create(req.body);
-
-    //     return res.status(201).json(response);
-    // }
-
     public create = async (req: Request, res: Response): Promise<Response> => {
         const userId = res.locals.decoded.sub;
 
