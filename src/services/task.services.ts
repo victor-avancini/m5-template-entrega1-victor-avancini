@@ -29,7 +29,6 @@ export class TaskServices {
 
     public update = async (id: number, body: TaskUpdate, userId: number): Promise<Task> => {
         const updatedTask = { ...body, userId };
-        console.log(updatedTask)
 
         return await this.task.update({ where: { id }, data: updatedTask });
     }
